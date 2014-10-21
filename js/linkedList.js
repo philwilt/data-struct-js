@@ -8,7 +8,7 @@
 
     LinkedList.prototype.head = null;
 
-    LinkedList.prototype.add = function(node) {
+    LinkedList.prototype.insert = function(node) {
       var temp;
       if (this.size > 0) {
         this.head.prev = node;
@@ -25,38 +25,35 @@
       curr = this.head;
       if (index === 0) {
         return this.head;
-      } else {
-        for (i = _i = 0, _ref = index - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
-          curr = curr.next;
-        }
+      }
+      for (i = _i = 0, _ref = index - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
+        curr = curr.next;
       }
       return curr;
     };
 
-    LinkedList.prototype.remove = function(index) {
-      var node;
-      node = this.get(index);
+    LinkedList.prototype.remove = function(node) {
       node.prev.next = node.next;
       node.next.prev = node.prev;
       this.size--;
-      return node;
+      return node.value;
     };
 
-    LinkedList.prototype.getIndex = function(value) {
-      var curr, i, idx, _i, _ref;
+    LinkedList.prototype.search = function(value) {
+      var curr, node;
       curr = this.head;
-      idx = null;
-      for (i = _i = 0, _ref = this.size - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
+      node = null;
+      while (curr !== null) {
         if (curr.value === value) {
-          return i;
+          return curr;
         }
         curr = curr.next;
       }
-      return idx;
+      return null;
     };
 
     LinkedList.prototype.includes = function(value) {
-      return this.getIndex(value) !== null;
+      return this.search(value) !== null;
     };
 
     return LinkedList;
