@@ -32,4 +32,34 @@ describe("LinkedList", function() {
     list.get(1).value.should.equal('hello');
     list.get(2).value.should.equal('hi');
   });
+
+  it("should remove a node at an index", function(){
+    var list = new LinkedList();
+
+    list.add(new Node('hi'));
+    list.add(new Node('hello'));
+    list.add(new Node('greetings'));
+    node = list.remove(1);
+
+    node.value.should.equal('hello')
+    list.size.should.equal(2);
+    list.get(0).value.should.equal('greetings');
+    list.get(1).value.should.equal('hi');
+  });
+
+  it("should return an index of a value", function (){
+    var list = new LinkedList();
+    for(var i = 0; i < 26; i++) {
+      list.add(new Node(i));
+    }
+    list.getIndex(0).should.equal(25);
+  });
+
+  it("should include a value", function (){
+    var list = new LinkedList();
+    for(var i = 0; i < 26; i++) {
+      list.add(new Node(i));
+    }
+    list.includes(24).should.equal(true);
+  });
 });
