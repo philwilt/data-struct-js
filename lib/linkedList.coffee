@@ -4,7 +4,7 @@ exports.LinkedList =
     size: 0,
     head: null
 
-    add: (node) ->
+    insert: (node) ->
       if(this.size > 0)
         this.head.prev = node
 
@@ -16,30 +16,36 @@ exports.LinkedList =
 
     get: (index) ->
       curr = this.head
-      if index == 0
-        return this.head
-      else
-        for i in [0..(index - 1)]
-          curr = curr.next
+      return this.head if index == 0
+
+      for i in [0..(index - 1)]
+        curr = curr.next
       curr
 
-    remove: (index) ->
-      node = this.get(index)
+    remove: (node) ->
       node.prev.next = node.next
       node.next.prev = node.prev
       this.size--
-      node
+      node.value
 
-    getIndex: (value) ->
+    search: (value) ->
       curr = this.head
-      idx = null
-      for i in [0..(this.size - 1)]
-        if(curr.value == value)
-          return i
+      node = null
+      while curr != null
+        return curr if curr.value == value
         curr = curr.next
-      return idx
+      null
 
     includes: (value) ->
-      this.getIndex(value) != null
+      this.search(value) != null
+
+    toString: () ->
+      return '' if @size == 0
+      curr = @head
+      msg = ''
+      while curr.next != null
+        msg += curr.toString() + ' '
+        curr = curr.next
+      msg += curr.toString()
 
 

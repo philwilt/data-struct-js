@@ -7,7 +7,7 @@ module.exports = (grunt) ->
     watch:
       coffee:
         files: 'lib/*.coffee'
-        tasks: ['coffee:compile']
+        tasks: ['coffee:compile', 'mochaTest:test']
       test:
         files: 'test/**/*.js'
         tasks: ['mochaTest:test']
