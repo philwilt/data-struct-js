@@ -79,4 +79,12 @@ describe("LinkedList", function() {
     }
     list.includes(39483).should.equal(false);
   });
+
+  it("should have a to string", function (){
+    var list = new LinkedList();
+    for(var i = 0; i < 3; i++) {
+      list.insert(new Node(i));
+    }
+    list.toString().should.equal('2 1 0');
+  });
 });

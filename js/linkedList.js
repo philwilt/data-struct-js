@@ -56,6 +56,20 @@
       return this.search(value) !== null;
     };
 
+    LinkedList.prototype.toString = function() {
+      var curr, msg;
+      if (this.size === 0) {
+        return '';
+      }
+      curr = this.head;
+      msg = '';
+      while (curr.next !== null) {
+        msg += curr.toString() + ' ';
+        curr = curr.next;
+      }
+      return msg += curr.toString();
+    };
+
     return LinkedList;
 
   })();

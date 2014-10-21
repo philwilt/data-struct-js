@@ -39,4 +39,13 @@ exports.LinkedList =
     includes: (value) ->
       this.search(value) != null
 
+    toString: () ->
+      return '' if @size == 0
+      curr = @head
+      msg = ''
+      while curr.next != null
+        msg += curr.toString() + ' '
+        curr = curr.next
+      msg += curr.toString()
+
 

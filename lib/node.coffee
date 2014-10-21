@@ -5,3 +5,6 @@ exports.Node =
     prev: null
 
     constructor: (@value) ->
+
+    toString: () ->
+      @value.toString()

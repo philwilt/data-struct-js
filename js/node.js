@@ -10,6 +10,10 @@
       this.value = value;
     }
 
+    Node.prototype.toString = function() {
+      return this.value.toString();
+    };
+
     return Node;
 
   })();
