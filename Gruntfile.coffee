@@ -1,19 +1,18 @@
-module.exports = function( grunt ) {
+module.exports = (grunt) ->
+  grunt.loadNpmTasks('grunt-contrib-coffee')
+  grunt.loadNpmTasks('grunt-contrib-watch')
 
-  grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
+  grunt.initConfig
+    watch:
+      coffee:
+        files: 'lib/*.coffee'
+        tasks: ['coffee:compile']
 
-    coffee: {
-      app: {
-        src: ['lib/**.coffee'],
-        dest: 'js/**.js'
-      }
-    }
-  });
-
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-coffee');
-
-  grunt.registerTask('default', ['coffee']);
-
-};
+    coffee:
+      compile:
+        expand: true,
+        flatten: true,
+        cwd: "#{__dirname}/lib/",
+        src: ['*.coffee'],
+        dest: 'js/',
+        ext: '.js'
