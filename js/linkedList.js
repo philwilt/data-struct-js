@@ -1,5 +1,7 @@
 (function() {
-  this.LinkedList = (function() {
+  var LinkedList;
+
+  exports.LinkedList = LinkedList = (function() {
     function LinkedList() {}
 
     LinkedList.prototype.size = 0;

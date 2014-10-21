@@ -1,5 +1,7 @@
-class @Node
-  next: null,
-  prev: null
+exports.Node =
 
-  constructor: (@value) ->
+  class Node
+    next: null,
+    prev: null
+
+    constructor: (@value) ->

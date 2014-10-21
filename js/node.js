@@ -1,5 +1,7 @@
 (function() {
-  this.Node = (function() {
+  var Node;
+
+  exports.Node = Node = (function() {
     Node.prototype.next = null;
 
     Node.prototype.prev = null;

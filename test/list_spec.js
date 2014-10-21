@@ -1,4 +1,6 @@
-var should = chai.should();
+var should = require('chai').should();
+var Node = require('../js/node').Node
+var LinkedList = require('../js/linkedList').LinkedList
 
 describe("LinkedList", function() {
   it("should add a node", function(){

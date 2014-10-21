@@ -1,4 +1,5 @@
-var should = chai.should();
+var should = require('chai').should();
+var Node = require('../js/node').Node
 
 describe("Node", function() {
   it("should have a value", function(){
