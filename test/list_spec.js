@@ -55,11 +55,27 @@ describe("LinkedList", function() {
     list.getIndex(0).should.equal(25);
   });
 
+  it("should not find a value", function (){
+    var list = new LinkedList();
+    for(var i = 0; i < 26; i++) {
+      list.add(new Node(i));
+    }
+    should.not.exist(list.getIndex(9384));
+  });
+
   it("should include a value", function (){
     var list = new LinkedList();
     for(var i = 0; i < 26; i++) {
       list.add(new Node(i));
     }
     list.includes(24).should.equal(true);
+  });
+
+  it("should not include a value", function (){
+    var list = new LinkedList();
+    for(var i = 0; i < 26; i++) {
+      list.add(new Node(i));
+    }
+    list.includes(39483).should.equal(false);
   });
 });
