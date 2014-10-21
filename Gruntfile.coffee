@@ -1,19 +1,39 @@
-module.exports = function( grunt ) {
+module.exports = (grunt) ->
+  grunt.loadNpmTasks('grunt-contrib-coffee')
+  grunt.loadNpmTasks('grunt-contrib-watch')
+  grunt.loadNpmTasks('grunt-mocha-test')
 
-  grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
+  grunt.initConfig
+    watch:
+      coffee:
+        files: 'lib/*.coffee'
+        tasks: ['coffee:compile']
+      test:
+        files: 'test/**/*.js'
+        tasks: ['mochaTest:test']
 
-    coffee: {
-      app: {
-        src: ['lib/**.coffee'],
-        dest: 'js/**.js'
-      }
-    }
-  });
+    coffee:
+      compile:
+        expand: true,
+        flatten: true,
+        cwd: "#{__dirname}/lib/",
+        src: ['*.coffee'],
+        dest: 'js/',
+        ext: '.js'
 
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-coffee');
+    mochaTest:
+      test:
+        options:
+          reporter: 'spec',
+          quiet: false,
+          require: 'coverage/blanket'
+        src: ['test/**/*.js']
 
-  grunt.registerTask('default', ['coffee']);
+      coverage:
+          options:
+            reporter: 'html-cov',
+            quiet: true,
+            captureFile: 'coverage.html'
+          src: ['test/**/*.js']
 
-};
+    grunt.registerTask('default', ['coffee','mochaTest'])
