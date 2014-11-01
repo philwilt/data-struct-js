@@ -26,7 +26,7 @@ module.exports = (grunt) ->
         options:
           reporter: 'spec',
           quiet: false,
-          # require: 'coverage/blanket'
+          require: 'coverage/blanket'
         src: ['js/**/*_spec.js']
 
       coverage:

@@ -1,10 +1,10 @@
 (function() {
   var Node;
 
-  exports.Node = Node = (function() {
-    Node.prototype.next = null;
+  Node = (function() {
+    Node.next = null;
 
-    Node.prototype.prev = null;
+    Node.prev = null;
 
     function Node(value) {
       this.value = value;
@@ -17,5 +17,7 @@
     return Node;
 
   })();
+
+  exports.Node = Node;
 
 }).call(this);

@@ -1,7 +1,7 @@
 (function() {
   var LinkedList;
 
-  exports.LinkedList = LinkedList = (function() {
+  LinkedList = (function() {
     function LinkedList() {}
 
     LinkedList.prototype.size = 0;
@@ -73,5 +73,7 @@
     return LinkedList;
 
   })();
+
+  exports.LinkedList = LinkedList;
 
 }).call(this);
