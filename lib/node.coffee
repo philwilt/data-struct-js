@@ -1,10 +1,10 @@
-exports.Node =
+class Node
+  @next = null
+  @prev = null
 
-  class Node
-    next: null,
-    prev: null
+  constructor: (@value) ->
 
-    constructor: (@value) ->
+  toString: () ->
+    @value.toString()
 
-    toString: () ->
-      @value.toString()
+exports.Node = Node

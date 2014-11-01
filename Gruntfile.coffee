@@ -6,18 +6,18 @@ module.exports = (grunt) ->
   grunt.initConfig
     watch:
       coffee:
-        files: 'lib/*.coffee'
+        files: ['lib/*.coffee', 'test/*.coffee']
         tasks: ['coffee:compile', 'mochaTest:test']
       test:
-        files: 'test/**/*.js'
+        files: 'js/**/*_spec.js'
         tasks: ['mochaTest:test']
 
     coffee:
       compile:
         expand: true,
         flatten: true,
-        cwd: "#{__dirname}/lib/",
-        src: ['*.coffee'],
+        cwd: "#{__dirname}/",
+        src: ['lib/*.coffee', 'test/*.coffee'],
         dest: 'js/',
         ext: '.js'
 
@@ -27,13 +27,13 @@ module.exports = (grunt) ->
           reporter: 'spec',
           quiet: false,
           require: 'coverage/blanket'
-        src: ['test/**/*.js']
+        src: ['js/**/*_spec.js']
 
       coverage:
           options:
             reporter: 'html-cov',
             quiet: true,
             captureFile: 'coverage.html'
-          src: ['test/**/*.js']
+          src: ['js/**/*_spec.js']
 
     grunt.registerTask('default', ['coffee','mochaTest'])
