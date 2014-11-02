@@ -11,7 +11,7 @@ grunt
 ```
 
 ## Binary Search Tree
-Recursive implementation of BST
+Recursive implementation of BST. Has three pre/in/post-order traversals as well as breadth first traversals.
 
 ## Doubly Linked List
 Self explanatory
