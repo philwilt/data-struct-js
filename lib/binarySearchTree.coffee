@@ -43,4 +43,42 @@ class BinarySearchTree
     balance -= ( 1 + Math.abs( @right.balance() ) ) if @right
     balance
 
+  inOrderTraversal: ->
+    inOrderTraversal(this, [])
+
+  preOrderTraversal: ->
+    preOrderTraversal(this, [])
+
+  postOrderTraversal: ->
+    postOrderTraversal(this, [])
+
+  breadthFirstTraversal: ->
+    arr = []
+    queue = []
+    queue.push(this)
+    while queue.length > 0
+      node = queue.shift()
+      arr.push(node.val)
+      queue.push node.left if node.left
+      queue.push node.right if node.right
+    arr
+
+  inOrderTraversal = (node, arr) ->
+    arr.push(node.left.inOrderTraversal()) if node.left
+    arr.push node.val
+    arr.push (node.right.inOrderTraversal()) if node.right
+    arr.concat.apply([], arr)
+
+  preOrderTraversal = (node, arr) ->
+    arr.push node.val
+    arr.push(node.left.preOrderTraversal()) if node.left
+    arr.push (node.right.preOrderTraversal()) if node.right
+    arr.concat.apply([], arr)
+
+  postOrderTraversal = (node, arr) ->
+    arr.push(node.left.postOrderTraversal()) if node.left
+    arr.push (node.right.postOrderTraversal()) if node.right
+    arr.push node.val
+    arr.concat.apply([], arr)
+
 exports.BinarySearchTree = BinarySearchTree
