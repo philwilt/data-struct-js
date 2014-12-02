@@ -20,6 +20,35 @@ class BinarySearchTree
       @right = new BinarySearchTree unless @right
       @size++ if @right.insert(val)
 
+  delete: (val) ->
+    if (@val == val)
+      if @right
+        @val = @right.val
+        @right.delete(@val)
+      else if @left
+        @val = @left.val
+        @left.delete(@val)
+      else
+        @val = null
+      @size--
+      true
+    else
+      if val < @val
+        return false unless @left
+        if @left.delete(val)
+          @size--
+          return true
+        false
+      else if val > @val
+        return false unless @right
+        if @right.delete(val)
+          @size--
+          return true
+        false
+
+  removeNode = ->
+
+
   depth: ->
     return 0 if @size == 0
     left = 0
