@@ -20,6 +20,32 @@ class BinarySearchTree
       @right = new BinarySearchTree unless @right
       @size++ if @right.insert(val)
 
+  delete: (val) ->
+    if (@val == val)
+      if @right
+        @val = @right.val
+        @right.delete(@val)
+      else if @left
+        @val = @left.val
+        @left.delete(@val)
+      else
+        @val = null
+      @size--
+      true
+    else
+      if val < @val
+        return false unless @left
+        if @left.delete(val)
+          @size--
+          return true
+        false
+      else if val > @val
+        return false unless @right
+        if @right.delete(val)
+          @size--
+          return true
+        false
+
   depth: ->
     return 0 if @size == 0
     left = 0
@@ -62,6 +88,14 @@ class BinarySearchTree
       queue.push node.left if node.left
       queue.push node.right if node.right
     arr
+
+  lowestCommonAncestor: (val1, val2) ->
+    if @val > val1 && @val > val2
+      return @left.lowestCommonAncestor(val1, val2)
+    if @val < val1 && @val < val2
+      return @right.lowestCommonAncestor(val1, val2)
+    return @val if @contains(val1) && @contains(val2)
+    false
 
   inOrderTraversal = (node, arr) ->
     arr.push(node.left.inOrderTraversal()) if node.left

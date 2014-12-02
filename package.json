@@ -5,12 +5,12 @@
   "author": "Phil Wilt <phillip.wilt@gmail.com>",
   "devDependencies": {
     "blanket": "^1.1.6",
-    "mocha": "*",
     "chai": "*",
     "grunt": "*",
     "grunt-contrib-coffee": "*",
     "grunt-contrib-watch": "*",
-    "grunt-mocha-test": "*"
+    "grunt-mocha-test": "*",
+    "mocha": "*"
   },
   "scripts": {
     "test": "make test"

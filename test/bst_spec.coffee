@@ -31,10 +31,25 @@ describe "BinarySearchTree", ->
     tree.contains(1000).should.be.false
     tree.contains(0).should.be.false
 
+  it "should delete a value", ->
+    tree = new BinarySearchTree
+    tree.insert(i) for i in [5,3,8,7,6,2,4,9,1]
+    size = tree.size
+    tree.delete(2).should.be.true
+    tree.contains(2).should.be.false
+    tree.size.should.equal (size - 1)
+
+  it "should return false if delete fails", ->
+    tree = new BinarySearchTree
+    tree.insert(i) for i in [5,3,8,7,6,2,4,9,1]
+    size = tree.size
+    tree.delete(100).should.be.false
+    tree.size.should.equal (size)
+
   it "should report its depth", ->
     tree = new BinarySearchTree
     tree.depth().should.equal 0
-    tree.insert(i) for i in [5,3,8,7,6,2,4,9,1,6]
+    tree.insert(i) for i in [5,3,8,7,6,2,4,9,1]
     tree.depth().should.equal 4
 
   it "should report its balance", ->
@@ -65,5 +80,17 @@ describe "BinarySearchTree", ->
 
   it "should have a breadth first traversal", ->
     tree = new BinarySearchTree
-    tree.insert(i) for i in [5,3,8,7,6,2,4,9,1,6]
+    tree.insert(i) for i in [5,3,8,7,6,2,4,9,1]
     tree.breadthFirstTraversal().should.deep.equal [5,3,8,2,4,7,9,1,6]
+
+  it "should find a lowest common ancestor", ->
+    tree = new BinarySearchTree
+    tree.insert(i) for i in [5,3,8,7,6,2,4,9,1]
+    tree.lowestCommonAncestor(6,9).should.equal 8
+    tree.lowestCommonAncestor(3,1).should.equal 3
+    tree.lowestCommonAncestor(8,9).should.equal 8
+
+  it "should return false if given an ancestor not in tree", ->
+    tree = new BinarySearchTree
+    tree.insert(i) for i in [5,3,8,7,6,2,4,9,1]
+    tree.lowestCommonAncestor(6,10).should.be.false
