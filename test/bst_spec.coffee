@@ -80,5 +80,17 @@ describe "BinarySearchTree", ->
 
   it "should have a breadth first traversal", ->
     tree = new BinarySearchTree
-    tree.insert(i) for i in [5,3,8,7,6,2,4,9,1,6]
+    tree.insert(i) for i in [5,3,8,7,6,2,4,9,1]
     tree.breadthFirstTraversal().should.deep.equal [5,3,8,2,4,7,9,1,6]
+
+  it "should find a lowest common ancestor", ->
+    tree = new BinarySearchTree
+    tree.insert(i) for i in [5,3,8,7,6,2,4,9,1]
+    tree.lowestCommonAncestor(6,9).should.equal 8
+    tree.lowestCommonAncestor(3,1).should.equal 3
+    tree.lowestCommonAncestor(8,9).should.equal 8
+
+  it "should return false if given an ancestor not in tree", ->
+    tree = new BinarySearchTree
+    tree.insert(i) for i in [5,3,8,7,6,2,4,9,1]
+    tree.lowestCommonAncestor(6,10).should.be.false

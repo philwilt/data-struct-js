@@ -89,6 +89,14 @@ class BinarySearchTree
       queue.push node.right if node.right
     arr
 
+  lowestCommonAncestor: (val1, val2) ->
+    if @val > val1 && @val > val2
+      return @left.lowestCommonAncestor(val1, val2)
+    if @val < val1 && @val < val2
+      return @right.lowestCommonAncestor(val1, val2)
+    return @val if @contains(val1) && @contains(val2)
+    false
+
   inOrderTraversal = (node, arr) ->
     arr.push(node.left.inOrderTraversal()) if node.left
     arr.push node.val
