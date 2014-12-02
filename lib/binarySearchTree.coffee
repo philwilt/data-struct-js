@@ -46,9 +46,6 @@ class BinarySearchTree
           return true
         false
 
-  removeNode = ->
-
-
   depth: ->
     return 0 if @size == 0
     left = 0
